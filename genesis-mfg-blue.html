@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genesis MFG — Precision Custom Manufacturing | Houston, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================
+   TOKENS / BASE
+========================================= */
+:root{
+  --bg:#051630;
+  --panel:#07203c;
+  --panel-2:#0d2645;
+  --line:rgba(255,255,255,0.10);
+  --line-soft:rgba(255,255,255,0.06);
+  --line-strong:rgba(255,255,255,0.18);
+
+  --text-strong:rgba(255,255,255,0.92);
+  --text:rgba(255,255,255,0.80);
+  --muted:rgba(255,255,255,0.55);
+
+  --red:#1f8bff;
+  --red-bright:#4da6ff;
+  --red-deep:#0a57c2;
+  --red-glow:rgba(31,139,255,0.16);
+  --steel:#8aa0bf;
+
+  --font:"Exo 2",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+
+  --maxw:100%;
+  --pad:clamp(1.25rem,4vw,3.5rem);
+
+  --h1:clamp(2.6rem,7.5vw,6.4rem);
+  --h2:clamp(1.9rem,4vw,3.4rem);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:80px;}
+html,body{overflow-x:hidden;}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--font);font-size:clamp(15px,1.04vw,17px);line-height:1.55;letter-spacing:.01em;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;max-width:100%;}
+::selection{background:var(--red);color:#fff;}
+
+h1,h2,h3,h4{margin:0;color:var(--text-strong);line-height:1.06;letter-spacing:.01em;font-weight:600;}
+h1{font-size:var(--h1);} h2{font-size:var(--h2);}
+
+.eyebrow{
+  font-family:var(--mono);font-size:.74rem;font-weight:500;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:.75em;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--red);}
+.eyebrow.center{justify-content:center;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);}
+
+/* =========================================
+   NAV
+========================================= */
+.site-nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:transparent;border-bottom:1px solid transparent;
+  transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease;
+}
+.site-nav.solid{background:rgba(0,0,0,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:16px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.nav-left{display:flex;align-items:center;gap:30px;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;color:var(--text);transition:color .2s;}
+.nav-links a:hover{color:var(--red-bright);}
+.nav-links a.m-only{display:none;}
+.nav-cta{
+  font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.04em;color:#fff;
+  background:var(--red);padding:10px 18px;display:inline-flex;align-items:center;gap:8px;
+  transition:transform .2s,box-shadow .2s,background .2s;
+}
+.nav-cta:hover{background:var(--red-bright);transform:translateY(-1px);box-shadow:0 10px 26px -10px var(--red);}
+.brand{display:flex;align-items:center;gap:11px;}
+.brand .glyph{width:40px;height:40px;flex:none;position:relative;border:1.5px solid var(--red);display:grid;place-items:center;}
+.brand .glyph::before{content:"";position:absolute;inset:6px;border:1px solid var(--red);opacity:.4;}
+.brand .glyph span{font-family:var(--font);font-weight:700;font-size:18px;color:var(--red-bright);}
+.brand .name{font-weight:700;font-size:1.05rem;letter-spacing:.04em;text-transform:uppercase;line-height:1;text-align:right;}
+.brand .name small{display:block;font-family:var(--mono);font-weight:400;font-size:.54rem;letter-spacing:.26em;color:var(--steel);margin-top:4px;}
+.burger{display:none;order:1;background:none;border:1px solid var(--line-strong);padding:9px 11px;cursor:pointer;}
+.burger span{display:block;width:18px;height:2px;background:#fff;margin:3px 0;}
+
+/* =========================================
+   HERO
+========================================= */
+.section-hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;color:#fff;display:flex;flex-direction:column;}
+.hero-media{position:absolute;inset:0;z-index:0;background:
+  radial-gradient(120% 90% at 78% 12%,#0a2c54 0%,#06203f 45%,#051630 100%);}
+.hero-media .grid{
+  position:absolute;inset:0;opacity:.6;
+  background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+  background-size:70px 70px;
+  -webkit-mask-image:radial-gradient(ellipse 75% 65% at 72% 28%,#051630,transparent 78%);
+          mask-image:radial-gradient(ellipse 75% 65% at 72% 28%,#051630,transparent 78%);
+  animation:drift 26s linear infinite;
+}
+@keyframes drift{to{background-position:70px 70px,70px 70px;}}
+.hero-media .glow{position:absolute;width:760px;height:760px;right:-180px;top:-220px;background:radial-gradient(circle,var(--red-glow),transparent 62%);filter:blur(8px);}
+.hero-media .scan{position:absolute;inset:0;background:linear-gradient(transparent 0,rgba(31,139,255,.05) 50%,transparent 100%);height:200%;animation:scan 7s linear infinite;}
+@keyframes scan{from{transform:translateY(-50%);}to{transform:translateY(0);}}
+.section-hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.2);z-index:0;pointer-events:none;}
+
+.hero-inner{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;padding:120px var(--pad) 0;max-width:var(--maxw);margin:0 auto;width:100%;}
+.hero-inner .eyebrow{margin-bottom:1.6rem;}
+.hero-title{font-size:var(--h1);font-weight:700;letter-spacing:-.01em;max-width:16ch;}
+.hero-title .red{color:var(--red-bright);}
+.hero-title .ln{display:block;overflow:hidden;}
+.hero-title .ln i{display:block;font-style:normal;transform:translateY(108%);}
+.section-hero.loaded .hero-title .ln i{animation:rise .9s cubic-bezier(.16,1,.3,1) forwards;}
+.section-hero.loaded .hero-title .ln:nth-child(2) i{animation-delay:.08s;}
+.section-hero.loaded .hero-title .ln:nth-child(3) i{animation-delay:.16s;}
+@keyframes rise{to{transform:translateY(0);}}
+.hero-sub{margin-top:1.8rem;max-width:48ch;color:var(--text);font-size:clamp(1rem,1.4vw,1.18rem);font-weight:300;}
+
+/* bottom UI bar */
+.hero-ui{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;
+  padding:0 var(--pad) clamp(1.25rem,3vh,2.25rem);max-width:var(--maxw);margin:0 auto;width:100%;}
+
+.hero-card{
+  display:grid;grid-template-columns:minmax(120px,150px) 1fr;gap:1.25rem;align-items:stretch;
+  max-width:min(540px,90vw);padding:0;position:relative;
+  background:rgba(0,0,0,.45);border:1px solid var(--line);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 20px 80px rgba(0,0,0,.4);
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;
+}
+.hero-card__media{position:relative;overflow:hidden;background:#0a2440;}
+.hero-card__media svg{width:100%;height:100%;object-fit:cover;transition:transform .35s ease;}
+.hero-card__media::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(31,139,255,.12));}
+.hero-card__body{padding:1rem 1.1rem;display:flex;flex-direction:column;justify-content:center;}
+.hero-card__tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;}
+.hero-card__title{margin-top:.5rem;font-weight:600;font-size:clamp(1.15rem,1.6vw,1.5rem);text-transform:uppercase;line-height:1;color:var(--red-bright);}
+.hero-card__desc{margin-top:.5rem;font-weight:300;font-size:.92rem;line-height:1.25;color:#fff;}
+.hero-card__go{margin-top:.7rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:#fff;display:inline-flex;gap:.5em;}
+@media(hover:hover){.hero-card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 26px 90px rgba(0,0,0,.55);}.hero-card:hover .hero-card__media svg{transform:scale(1.05);}}
+
+.hero-scroll{display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--mono);font-size:.6rem;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;flex:none;}
+.hero-scroll .track{width:1px;height:54px;background:linear-gradient(var(--red),transparent);position:relative;overflow:hidden;}
+.hero-scroll .track::after{content:"";position:absolute;top:-14px;left:0;width:1px;height:14px;background:var(--red-bright);animation:cue 1.8s ease-in-out infinite;}
+@keyframes cue{0%{top:-14px}60%,100%{top:54px}}
+
+/* =========================================
+   SHARED: corner-bracket
+========================================= */
+.corners::after{
+  content:"";position:absolute;inset:8px;pointer-events:none;opacity:0;z-index:3;
+  background:
+    linear-gradient(var(--red),var(--red)) left top/0 2px no-repeat,
+    linear-gradient(var(--red),var(--red)) left top/2px 0 no-repeat,
+    linear-gradient(var(--red),var(--red)) right top/0 2px no-repeat,
+    linear-gradient(var(--red),var(--red)) right top/2px 0 no-repeat,
+    linear-gradient(var(--red),var(--red)) left bottom/0 2px no-repeat,
+    linear-gradient(var(--red),var(--red)) left bottom/2px 0 no-repeat,
+    linear-gradient(var(--red),var(--red)) right bottom/0 2px no-repeat,
+    linear-gradient(var(--red),var(--red)) right bottom/2px 0 no-repeat;
+  transition:opacity .18s ease,background-size .35s cubic-bezier(.2,.9,.2,1);
+}
+.corners.on::after{opacity:1;}
+@media(hover:hover){.corners:hover::after{opacity:1;}}
+
+/* =========================================
+   SERVICES CARDS
+========================================= */
+.section-services{position:relative;overflow:hidden;background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(3.5rem,7vw,6rem) 0;}
+.section-services .glow{position:absolute;left:-10%;top:-30%;width:600px;height:600px;background:radial-gradient(circle,var(--red-glow),transparent 65%);pointer-events:none;}
+.services-head{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(2rem,4vw,3.2rem);}
+.services-head h2{max-width:14ch;}
+.services-head .ref{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--steel);}
+.services-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+.service-card{
+  position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:2.25rem 1.75rem 0;min-height:340px;
+  border:1px solid var(--line);background:linear-gradient(180deg,rgba(10,34,66,.5),rgba(0,0,0,.5));
+  transition:transform .22s ease,background .22s ease,border-color .22s ease;
+}
+.service-card .item{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;color:var(--red-bright);margin-bottom:1.1rem;}
+.service-card__media{width:120px;height:120px;display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;transition:transform .22s ease,filter .22s ease;}
+.service-card__media svg{width:100%;height:100%;stroke:var(--text-strong);fill:none;stroke-width:1.4;}
+.service-card__title{font-size:1.05rem;font-weight:600;letter-spacing:.015em;text-transform:uppercase;}
+.service-card__desc{margin-top:.55rem;max-width:30ch;font-size:.9rem;line-height:1.5;color:var(--muted);}
+.service-card__btn{
+  margin-top:auto;width:calc(100% + 3.5rem);margin-left:-1.75rem;margin-right:-1.75rem;
+  padding:.9rem 1rem;border-top:1px solid rgba(31,139,255,.3);background:rgba(0,0,0,.7);
+  color:#fff;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:center;gap:.6rem;transition:background .22s ease;
+}
+.service-card__btn .arr{transition:transform .22s ease;}
+@media(hover:hover) and (pointer:fine){
+  .service-card:hover{transform:scale(.975);background:rgba(12,42,82,.5);border-color:rgba(31,139,255,.4);}
+  .service-card:hover .service-card__media{transform:translateY(-3px);filter:drop-shadow(0 10px 22px rgba(0,0,0,.5));}
+  .service-card:hover .service-card__media svg{stroke:var(--red-bright);}
+  .service-card:hover .service-card__btn{background:var(--red);}
+  .service-card:hover .service-card__btn .arr{transform:translateX(4px);}
+  .service-card:hover.corners::after{opacity:1;background-size:22px 2px,2px 22px,22px 2px,2px 22px,22px 2px,2px 22px,22px 2px,2px 22px;}
+}
+
+/* =========================================
+   ROTATOR (materials marquee)
+========================================= */
+.rotator-wrap{position:relative;background:#051630;border-bottom:1px solid var(--line);overflow:hidden;}
+.rotator-label{position:absolute;left:var(--pad);top:18px;z-index:5;font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;display:flex;gap:.6em;align-items:center;}
+.rotator-label::before{content:"";width:20px;height:1px;background:var(--red);}
+.rotator{width:100%;overflow:hidden;padding-top:54px;}
+.rotator__track{display:flex;width:max-content;animation:scrollX 36s linear infinite;}
+.rotator-wrap:hover .rotator__track{animation-play-state:paused;}
+@keyframes scrollX{to{transform:translateX(-50%);}}
+.rotator__item{position:relative;width:230px;height:230px;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.9rem;border-right:1px solid var(--line);background:#07203c;cursor:default;}
+.rotator__item svg{width:64px;height:64px;stroke:var(--steel);fill:none;stroke-width:1.4;opacity:.85;transition:stroke .2s,opacity .2s;}
+.rotator__item span{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .2s;}
+@media(hover:hover){.rotator__item:hover svg{stroke:var(--red-bright);opacity:1;}.rotator__item:hover span{color:#fff;}.rotator__item:hover.corners::after{opacity:1;background-size:24px 2px,2px 24px,24px 2px,2px 24px,24px 2px,2px 24px,24px 2px,2px 24px;}}
+
+/* =========================================
+   INTRO
+========================================= */
+.section-intro{padding:clamp(3.5rem,8vw,7rem) 0;}
+.section-intro .lead{max-width:24ch;font-size:clamp(1.6rem,4.4vw,3.2rem);font-weight:300;line-height:1.12;letter-spacing:.01em;color:var(--text-strong);}
+.section-intro .lead b{font-weight:600;color:var(--red-bright);}
+.section-intro .meta{margin-top:1.6rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;color:var(--steel);max-width:60ch;line-height:1.8;}
+
+/* =========================================
+   TRIPLE CARDS
+========================================= */
+.section-triple{padding:0;}
+.triple-grid{display:grid;grid-template-columns:repeat(3,1fr);width:100%;}
+.triple-card{position:relative;min-height:520px;overflow:hidden;border-right:1px solid var(--line);border-top:1px solid var(--line);cursor:pointer;background:#051a33;display:block;}
+.triple-card:last-child{border-right:0;}
+.triple-media{position:absolute;inset:0;opacity:.32;transition:opacity .3s ease,transform .5s ease;}
+.triple-media svg{width:100%;height:100%;}
+.triple-card:hover .triple-media{opacity:.6;transform:scale(1.04);}
+.triple-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.78));}
+.triple-content{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(1.5rem,2.5vw,2.5rem);}
+.triple-num{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;color:var(--red-bright);}
+.triple-title{margin-top:.8rem;font-size:clamp(1.4rem,1.8vw,1.9rem);font-weight:500;color:#fff;text-transform:uppercase;letter-spacing:.01em;}
+.triple-desc{margin-top:.7rem;max-width:42ch;font-size:.96rem;line-height:1.5;color:var(--text);}
+.triple-go{margin-top:1.1rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--red-bright);display:inline-flex;gap:.5em;}
+
+/* =========================================
+   TRUST STRIP
+========================================= */
+.section-trust{background:#051630;padding:clamp(3.5rem,6vw,6rem) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.trust-head{text-align:center;max-width:60ch;margin:0 auto clamp(2.5rem,4vw,3.5rem);display:flex;flex-direction:column;gap:1rem;align-items:center;}
+.trust-head h2{letter-spacing:-.01em;}
+.trust-head p{color:var(--text);line-height:1.65;}
+.trust-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(1rem,1.6vw,1.6rem);}
+.trust-card{position:relative;padding:1.7rem 1.6rem;min-height:170px;display:grid;grid-template-columns:1fr auto;gap:1.1rem;align-items:start;background:transparent;}
+.trust-card::after{content:"";position:absolute;inset:0;pointer-events:none;--l:26px;--t:2px;--c:rgba(255,255,255,.85);
+  background:
+    linear-gradient(var(--c),var(--c)) left top/var(--l) var(--t) no-repeat,
+    linear-gradient(var(--c),var(--c)) left top/var(--t) var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) right top/var(--l) var(--t) no-repeat,
+    linear-gradient(var(--c),var(--c)) right top/var(--t) var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) left bottom/var(--l) var(--t) no-repeat,
+    linear-gradient(var(--c),var(--c)) left bottom/var(--t) var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) right bottom/var(--l) var(--t) no-repeat,
+    linear-gradient(var(--c),var(--c)) right bottom/var(--t) var(--l) no-repeat;
+  transition:--c .2s;}
+.trust-num{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;color:var(--red-bright);}
+.trust-card h4{margin:.7rem 0 .5rem;font-size:1.5rem;font-weight:600;color:var(--text-strong);line-height:1;}
+.trust-card p{margin:0;font-size:.9rem;line-height:1.5;color:var(--muted);}
+.trust-media{width:64px;height:64px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;}
+.trust-media svg{width:30px;height:30px;stroke:var(--text-strong);fill:none;stroke-width:1.6;}
+@media(hover:hover) and (pointer:fine){.trust-card{transition:transform .18s ease;}.trust-card:hover{transform:translateY(-3px);}.trust-card:hover::after{--c:var(--red-bright);}.trust-card:hover .trust-media svg{stroke:var(--red-bright);}}
+
+/* =========================================
+   ZIG (white)
+========================================= */
+.zig{background:#fff;color:#0b0b0b;padding:clamp(4rem,8vw,7rem) 0;}
+.zig__inner{display:flex;flex-direction:column;gap:clamp(3rem,5vw,4.5rem);}
+.zig-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center;}
+.zig-row.is-right .zig-media{order:2;}
+.zig-row.is-right .zig-text{order:1;}
+.zig-text .eyebrow{color:rgba(0,0,0,.5);}
+.zig-text .eyebrow::before{background:var(--red);}
+.zig-text h3{margin:1rem 0 1rem;font-size:clamp(1.5rem,2.6vw,2.4rem);font-weight:600;letter-spacing:.01em;line-height:1.2;color:#0b0b0b;}
+.zig-text p{margin:0;color:rgba(0,0,0,.72);line-height:1.7;font-size:clamp(1rem,1.2vw,1.18rem);}
+.zig-more{margin:.9rem 0 0;color:rgba(0,0,0,.7);line-height:1.7;font-size:1.02rem;}
+.zig-more[hidden]{display:none;}
+.zig-learn{margin-top:1.4rem;padding:.8rem 1.4rem;border:1px solid rgba(31,139,255,.4);background:var(--red);color:#fff;cursor:pointer;
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .2s;}
+.zig-learn:hover{background:var(--red-bright);transform:translateY(-1px);}
+.zig-media__frame{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#07203c;border:1px solid rgba(0,0,0,.1);}
+.zig-media__frame svg{width:100%;height:100%;object-fit:cover;}
+.zig-media__tag{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;color:#fff;text-transform:uppercase;background:rgba(0,0,0,.55);padding:5px 9px;}
+
+/* =========================================
+   CONTACT
+========================================= */
+.section-contact{padding:clamp(4rem,7vw,7rem) 0;background:var(--bg);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);}
+.cinfo h2{margin:1.2rem 0 2rem;}
+.cinfo dl{display:grid;grid-template-columns:auto 1fr;gap:16px 26px;margin:0 0 2rem;}
+.cinfo dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red-bright);padding-top:4px;}
+.cinfo dd{margin:0;color:var(--text-strong);}
+.cinfo dd a{border-bottom:1px solid transparent;transition:border-color .2s;}
+.cinfo dd a:hover{border-color:var(--red);}
+.cred{position:relative;display:inline-flex;align-items:center;gap:14px;padding:16px 20px;margin-top:.4rem;}
+.cred::after{content:"";position:absolute;inset:0;pointer-events:none;--l:20px;--t:2px;--c:rgba(255,255,255,.7);
+  background:
+    linear-gradient(var(--c),var(--c)) left top/var(--l) var(--t) no-repeat,
+    linear-gradient(var(--c),var(--c)) left top/var(--t) var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) right bottom/var(--l) var(--t) no-repeat,
+    linear-gradient(var(--c),var(--c)) right bottom/var(--t) var(--l) no-repeat;}
+.cred svg{width:40px;height:40px;flex:none;}
+.cred b{font-weight:700;text-transform:uppercase;font-size:.95rem;letter-spacing:.02em;display:block;line-height:1.1;color:var(--text-strong);}
+.cred span{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--steel);text-transform:uppercase;}
+
+form .fld{margin-bottom:16px;}
+form label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+form label .r{color:var(--red-bright);}
+form input,form textarea{width:100%;padding:13px 14px;background:var(--panel-2);border:1px solid var(--line);color:var(--text-strong);font-family:var(--font);font-size:.98rem;transition:border-color .2s,background .2s;}
+form input:focus,form textarea:focus{outline:none;border-color:var(--red);background:#102b4d;}
+form textarea{min-height:120px;resize:vertical;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-btn{width:100%;justify-content:center;padding:1rem;border:0;background:var(--red);color:#fff;font-family:var(--mono);font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:.6rem;transition:background .2s,transform .2s;}
+.form-btn:hover{background:var(--red-bright);transform:translateY(-1px);}
+.formnote{font-family:var(--mono);font-size:.72rem;color:var(--red-bright);margin:14px 0 0;min-height:1em;}
+
+/* =========================================
+   CTA + FOOTER
+========================================= */
+.cta-band{position:relative;overflow:hidden;text-align:center;padding:clamp(4rem,8vw,7rem) 0;border-top:1px solid var(--line);background:linear-gradient(160deg,#0a2c54,#051630 60%);}
+.cta-band .glow{position:absolute;left:50%;top:50%;width:700px;height:700px;transform:translate(-50%,-50%);background:radial-gradient(circle,var(--red-glow),transparent 65%);pointer-events:none;}
+.cta-band h2{position:relative;max-width:18ch;margin:1rem auto .6em;font-size:clamp(2rem,5vw,4rem);}
+.cta-band .phone{position:relative;font-weight:700;font-size:clamp(2.2rem,6vw,4.4rem);color:var(--red-bright);letter-spacing:-.01em;line-height:1;}
+
+footer{background:var(--panel);border-top:1px solid var(--line);}
+.foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding:clamp(3rem,5vw,4.5rem) 0;}
+.foot-brand .name{font-weight:700;font-size:1.5rem;text-transform:uppercase;letter-spacing:.04em;}
+.foot-brand p{margin:.9rem 0 0;color:var(--steel);font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;max-width:34ch;line-height:1.7;}
+.foot-nav{display:flex;gap:56px;flex-wrap:wrap;}
+.foot-col h5{margin:0 0 14px;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red-bright);font-weight:500;}
+.foot-col a{display:block;color:var(--text);font-size:.9rem;padding:5px 0;transition:color .2s;}
+.foot-col a:hover{color:#fff;}
+.foot-bottom{border-top:1px solid var(--line);padding:20px var(--pad);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:var(--steel);}
+
+/* =========================================
+   REVEAL
+========================================= */
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+[data-reveal].in{opacity:1;transform:none;}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media(max-width:1100px){.trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:980px){
+  .nav-links,.nav-cta{display:none;}
+  .burger{display:block;}
+  .nav-left{order:2;}.brand{order:3;}
+  .site-nav.open{background:rgba(0,0,0,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+  .site-nav.open .nav-links{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#051630;border-bottom:1px solid var(--line);padding:8px var(--pad) 18px;}
+  .site-nav.open .nav-links a{padding:14px 0;border-bottom:1px solid var(--line);}
+  .site-nav.open .nav-links a.m-only{display:block;color:var(--red-bright);}
+  .triple-grid{grid-template-columns:1fr;}
+  .triple-card{min-height:440px;border-right:0;}
+  .contact-grid{grid-template-columns:1fr;}
+  .zig-row{grid-template-columns:1fr;gap:1.6rem;}
+  .zig-row.is-right .zig-media,.zig-row .zig-media{order:1;}
+  .zig-row.is-right .zig-text,.zig-row .zig-text{order:2;}
+}
+@media(max-width:720px){
+  .hero-ui{flex-direction:row;align-items:flex-end;}
+  .hero-card{grid-template-columns:.85fr 1.15fr;}
+  .hero-scroll span{display:none;}
+}
+@media(max-width:560px){
+  .trust-grid{grid-template-columns:1fr;}
+  .two{grid-template-columns:1fr;}
+  .hero-card{max-width:74vw;}
+  .services-head,.foot-top{gap:16px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+  .hero-title .ln i{transform:none;}
+  [data-reveal]{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="site-nav" id="nav">
+  <div class="nav-in">
+    <div class="nav-left">
+      <nav class="nav-links">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#materials">Materials</a>
+        <a href="#work">Where We Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="m-only" href="tel:8006746149">↳ (800) 674-6149</a>
+      </nav>
+      <a class="nav-cta" href="tel:8006746149">↳ (800) 674-6149</a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <a class="brand" href="#top">
+      <span class="name">Genesis MFG<small>Houston · TX</small></span>
+      <span class="glyph"><span>G</span></span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="section-hero" id="top">
+  <div class="hero-media">
+    <div class="grid"></div>
+    <div class="glow"></div>
+    <div class="scan"></div>
+  </div>
+
+  <div class="hero-inner">
+    <span class="eyebrow">Est. 2010 — Custom Manufacturing</span>
+    <h1 class="hero-title">
+      <span class="ln"><i>Precision parts,</i></span>
+      <span class="ln"><i>machined</i></span>
+      <span class="ln"><i>to <span class="red">spec.</span></i></span>
+    </h1>
+    <p class="hero-sub">CNC and manual machining for ferrous and non-ferrous metals — built to your exact drawing, and built to last. A veteran and minority-owned shop serving Houston and beyond.</p>
+  </div>
+
+  <div class="hero-ui">
+    <a class="hero-card corners" href="#capabilities">
+      <div class="hero-card__media">
+        <svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="160" height="200" fill="#0a2440"/>
+          <g stroke="#1f8bff" stroke-width="1.2" fill="none" opacity=".85">
+            <circle cx="80" cy="100" r="48"/><circle cx="80" cy="100" r="30"/><circle cx="80" cy="100" r="12"/>
+            <path d="M80 28v144M8 100h144M44 64l72 72M116 64l-72 72"/>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-card__body">
+        <span class="hero-card__tag">Featured capability</span>
+        <span class="hero-card__title">CNC Machining</span>
+        <span class="hero-card__desc">Repeatable precision parts straight from your CAD or print.</span>
+        <span class="hero-card__go">Explore capabilities →</span>
+      </div>
+    </a>
+
+    <a class="hero-scroll" href="#capabilities" aria-label="Scroll">
+      <span>Scroll</span>
+      <span class="track"></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section-services" id="capabilities">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="services-head" data-reveal>
+      <h2>What we make<br>for you</h2>
+      <span class="ref">[ CAPABILITIES INDEX ]</span>
+    </div>
+    <div class="services-grid">
+
+      <a class="service-card corners" href="#contact" data-reveal>
+        <span class="item">ITEM 001</span>
+        <span class="service-card__media"><svg viewBox="0 0 64 64"><rect x="8" y="40" width="48" height="14"/><path d="M16 40V22h20v18M24 22V12h6v10M44 40V30h8v10"/><circle cx="26" cy="31" r="3"/></svg></span>
+        <span class="service-card__title">CNC Machining</span>
+        <span class="service-card__desc">Repeatable, tight-tolerance parts in volume from your CAD or drawing.</span>
+        <span class="service-card__btn">Request <span class="arr">→</span></span>
+      </a>
+
+      <a class="service-card corners" href="#contact" data-reveal>
+        <span class="item">ITEM 002</span>
+        <span class="service-card__media"><svg viewBox="0 0 64 64"><path d="M8 38h48M14 38V26h36v12"/><circle cx="20" cy="18" r="6"/><path d="M20 12v-4M26 18h4M20 24v-2"/><path d="M44 38v8M40 46h8"/></svg></span>
+        <span class="service-card__title">Manual Machining</span>
+        <span class="service-card__desc">One-offs, prototypes and short runs turned and milled by hand.</span>
+        <span class="service-card__btn">Request <span class="arr">→</span></span>
+      </a>
+
+      <a class="service-card corners" href="#contact" data-reveal>
+        <span class="item">ITEM 003</span>
+        <span class="service-card__media"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="9"/><path d="M32 10v6M32 48v6M10 32h6M48 32h6"/></svg></span>
+        <span class="service-card__title">Gaskets &amp; Shims</span>
+        <span class="service-card__desc">Custom-cut gaskets and metal shim stock made to your spec.</span>
+        <span class="service-card__btn">Request <span class="arr">→</span></span>
+      </a>
+
+      <a class="service-card corners" href="#contact" data-reveal>
+        <span class="item">ITEM 004</span>
+        <span class="service-card__media"><svg viewBox="0 0 64 64"><path d="M14 50l20-20M30 26l8 8M34 22l8 8 6-6-8-8z"/><path d="M44 14l6 6"/><path d="M12 52l4-2 2-4" stroke-width="1.2"/><circle cx="46" cy="16" r="2" fill="#1f8bff" stroke="none"/></svg></span>
+        <span class="service-card__title">Welding &amp; Fab</span>
+        <span class="service-card__desc">Assembly and finishing for equipment manufacturers, end to end.</span>
+        <span class="service-card__btn">Request <span class="arr">→</span></span>
+      </a>
+
+      <a class="service-card corners" href="#contact" data-reveal>
+        <span class="item">ITEM 005</span>
+        <span class="service-card__media"><svg viewBox="0 0 64 64"><rect x="10" y="20" width="44" height="10"/><path d="M14 30v8M22 30v12M30 30v8M38 30v12M46 30v8M50 30v10"/><path d="M10 20l6-8h32l6 8"/></svg></span>
+        <span class="service-card__title">Inspection</span>
+        <span class="service-card__desc">Parts measured and verified against the print before they ship.</span>
+        <span class="service-card__btn">Request <span class="arr">→</span></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROTATOR (materials) ============ -->
+<div class="rotator-wrap">
+  <span class="rotator-label">Metals we cut — ferrous &amp; non-ferrous</span>
+  <div class="rotator">
+    <div class="rotator__track" id="rotatorTrack">
+      <!-- set duplicated by JS for seamless loop -->
+    </div>
+  </div>
+</div>
+
+<!-- ============ INTRO ============ -->
+<section class="section-intro">
+  <div class="wrap">
+    <p class="lead" data-reveal>From a <b>single prototype</b> to a full production run, we machine it right the first time.</p>
+    <p class="meta" data-reveal>Genesis MFG has provided manufacturing solutions since 2010. Advanced machining and welding, backed by up to $8 million in liability insurance and the experience to produce a wide variety of parts.</p>
+  </div>
+</section>
+
+<!-- ============ TRIPLE ============ -->
+<section class="section-triple" id="work">
+  <div class="triple-grid">
+
+    <a class="triple-card" href="#contact" data-reveal>
+      <div class="triple-media"><svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice"><rect width="400" height="520" fill="#07203c"/><g stroke="#1f8bff" stroke-width="1" fill="none" opacity=".5"><rect x="120" y="160" width="160" height="200"/><circle cx="200" cy="260" r="60"/><path d="M0 260h400M200 60v400"/></g></svg></div>
+      <div class="triple-veil"></div>
+      <div class="triple-content">
+        <span class="triple-num">01 / SECTOR</span>
+        <h3 class="triple-title">Equipment Manufacturers</h3>
+        <p class="triple-desc">Production components held to the same standard, whether it's a one-off or a full run.</p>
+        <span class="triple-go">Start a project →</span>
+      </div>
+    </a>
+
+    <a class="triple-card" href="#contact" data-reveal>
+      <div class="triple-media"><svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice"><rect width="400" height="520" fill="#07203c"/><g stroke="#1f8bff" stroke-width="1" fill="none" opacity=".5"><path d="M60 360l80-120 70 60 130-180"/><rect x="40" y="120" width="320" height="280"/><path d="M40 260h320"/></g></svg></div>
+      <div class="triple-veil"></div>
+      <div class="triple-content">
+        <span class="triple-num">02 / SECTOR</span>
+        <h3 class="triple-title">Energy &amp; Industrial</h3>
+        <p class="triple-desc">Durable ferrous and non-ferrous parts for demanding industrial applications.</p>
+        <span class="triple-go">Start a project →</span>
+      </div>
+    </a>
+
+    <a class="triple-card" href="#contact" data-reveal>
+      <div class="triple-media"><svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice"><rect width="400" height="520" fill="#07203c"/><g stroke="#1f8bff" stroke-width="1" fill="none" opacity=".5"><circle cx="200" cy="200" r="90"/><circle cx="200" cy="200" r="50"/><path d="M200 60v280M60 200h280"/><rect x="150" y="350" width="100" height="100"/></g></svg></div>
+      <div class="triple-veil"></div>
+      <div class="triple-content">
+        <span class="triple-num">03 / SECTOR</span>
+        <h3 class="triple-title">Prototype to Production</h3>
+        <p class="triple-desc">Bring us a drawing or an idea — we'll connect you with the right components.</p>
+        <span class="triple-go">Start a project →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section class="section-trust">
+  <div class="wrap">
+    <div class="trust-head" data-reveal>
+      <span class="eyebrow center">Why shops choose us</span>
+      <h2>Built to spec. Backed by the record.</h2>
+      <p>A team of experienced professionals working in ferrous and non-ferrous metals, dedicated to doing the job right.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card" data-reveal>
+        <div><span class="trust-num">FACT 01</span><h4>2010</h4><p>Delivering manufacturing solutions for well over a decade.</p></div>
+        <div class="trust-media"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg></div>
+      </div>
+      <div class="trust-card" data-reveal>
+        <div><span class="trust-num">FACT 02</span><h4>$8M</h4><p>Carrying liability insurance up to eight million dollars.</p></div>
+        <div class="trust-media"><svg viewBox="0 0 32 32"><path d="M16 4l10 4v8c0 7-5 11-10 12-5-1-10-5-10-12V8z"/><path d="M11 16l4 4 7-8"/></svg></div>
+      </div>
+      <div class="trust-card" data-reveal>
+        <div><span class="trust-num">FACT 03</span><h4>Veteran</h4><p>A proudly veteran and minority-owned business.</p></div>
+        <div class="trust-media"><svg viewBox="0 0 32 32"><path d="M16 4l3.4 6.9 7.6 1.1-5.5 5.3 1.3 7.6L16 28l-6.8 3.6 1.3-7.6L5 18.7 12.6 17z"/></svg></div>
+      </div>
+      <div class="trust-card" data-reveal>
+        <div><span class="trust-num">FACT 04</span><h4>All Metals</h4><p>Ferrous and non-ferrous — tell us your alloy.</p></div>
+        <div class="trust-media"><svg viewBox="0 0 32 32"><path d="M16 4l12 6-12 6L4 10z"/><path d="M4 16l12 6 12-6M4 22l12 6 12-6"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ZIG (about) ============ -->
+<section class="zig" id="about">
+  <div class="wrap zig__inner">
+
+    <div class="zig-row is-left" data-reveal>
+      <div class="zig-text">
+        <span class="eyebrow">Since 2010</span>
+        <h3>Made to last — not just made.</h3>
+        <p>Our advanced machining and welding capabilities let us deliver equipment manufacturers products of the highest quality, with the knowledge and experience to produce a wide variety of parts.</p>
+        <p class="zig-more" hidden>We work with ferrous and non-ferrous metals and treat every part the same way — measured against the print before it leaves the floor.</p>
+        <button class="zig-learn" type="button" data-toggle>Read more</button>
+      </div>
+      <div class="zig-media">
+        <div class="zig-media__frame">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><rect width="400" height="300" fill="#07203c"/><g stroke="#1f8bff" stroke-width="1.2" fill="none" opacity=".7"><circle cx="200" cy="150" r="80"/><circle cx="200" cy="150" r="48"/><circle cx="200" cy="150" r="18"/><path d="M200 40v220M80 150h240"/><path d="M120 90l160 120M280 90L120 210"/></g></svg>
+          <span class="zig-media__tag">DWG · PRECISION TURNING</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="zig-row is-right" data-reveal>
+      <div class="zig-text">
+        <span class="eyebrow">How we run</span>
+        <h3>Three principles, every part.</h3>
+        <p><strong>Integrity first.</strong> We quote it straight and machine it right — no surprises between the print and the part.</p>
+        <p class="zig-more" hidden><strong>Excellence in all we do.</strong> One standard for one-offs and full runs alike. <strong>Tenacity.</strong> When you choose us, we see your project through.</p>
+        <button class="zig-learn" type="button" data-toggle>Read more</button>
+      </div>
+      <div class="zig-media">
+        <div class="zig-media__frame">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><rect width="400" height="300" fill="#07203c"/><g stroke="#1f8bff" stroke-width="1.2" fill="none" opacity=".7"><rect x="80" y="70" width="240" height="160"/><path d="M80 150h240M200 70v160"/><circle cx="140" cy="110" r="14"/><circle cx="260" cy="190" r="14"/><path d="M40 150h40M320 150h40"/></g></svg>
+          <span class="zig-media__tag">DWG · FIXTURE LAYOUT</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section-contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="cinfo" data-reveal>
+        <span class="eyebrow">Start a project</span>
+        <h2>Let's talk specs.</h2>
+        <dl>
+          <dt>Phone</dt><dd><a href="tel:8006746149">(800) 674-6149</a></dd>
+          <dt>Email</dt><dd><a href="mailto:sales@genesis-mfg.com">sales@genesis-mfg.com</a></dd>
+          <dt>Shop</dt><dd>13211 Windfern Rd, Suite L<br>Houston, TX 77064</dd>
+          <dt>Area</dt><dd>Houston · Dallas · Permian Basin · East Texas</dd>
+        </dl>
+        <div class="cred">
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="none" stroke="#1f8bff" stroke-width="1.5"/><path d="M24 9l3.9 7.9 8.7 1.3-6.3 6.1 1.5 8.6L24 36l-7.8 4 1.5-8.6-6.3-6.1 8.7-1.3z" fill="#1f8bff"/></svg>
+          <div><b>Veteran Owned</b><span>Minority-owned business</span></div>
+        </div>
+      </div>
+
+      <div data-reveal>
+        <form onsubmit="event.preventDefault();this.reset();this.querySelector('.formnote').textContent='✓ Thanks — we\'ll be in touch shortly.';">
+          <div class="two">
+            <div class="fld"><label>First name <span class="r">*</span></label><input type="text" required></div>
+            <div class="fld"><label>Last name <span class="r">*</span></label><input type="text" required></div>
+          </div>
+          <div class="fld"><label>Email <span class="r">*</span></label><input type="email" required></div>
+          <div class="fld"><label>Phone <span class="r">*</span></label><input type="tel" required></div>
+          <div class="fld"><label>What do you need machined? <span class="r">*</span></label><textarea required placeholder="Part, material, quantity, tolerances, target date…"></textarea></div>
+          <button type="submit" class="form-btn">Send request →</button>
+          <p class="formnote"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-band">
+  <div class="glow"></div>
+  <div class="wrap">
+    <span class="eyebrow center" data-reveal>Ready when you are</span>
+    <h2 data-reveal>Get your custom parts manufactured to last</h2>
+    <div class="phone" data-reveal><a href="tel:8006746149">(800) 674-6149</a></div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="name">Genesis MFG</div>
+        <p>Precision custom manufacturing — CNC &amp; manual machining for ferrous and non-ferrous metals. Houston, TX.</p>
+      </div>
+      <div class="foot-nav">
+        <div class="foot-col">
+          <h5>Site</h5>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#materials">Materials</a>
+          <a href="#work">Where We Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h5>Reach us</h5>
+          <a href="tel:8006746149">(800) 674-6149</a>
+          <a href="mailto:sales@genesis-mfg.com">sales@genesis-mfg.com</a>
+          <a href="#contact">13211 Windfern Rd, Ste L</a>
+          <a href="#contact">Houston, TX 77064</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© <span id="yr"></span> GENESIS MFG · ALL RIGHTS RESERVED</span>
+    <span>VETERAN &amp; MINORITY-OWNED · EST. 2010</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // nav solid on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('solid', window.scrollY > 40);
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // hero load-in
+  window.addEventListener('load', () => document.querySelector('.section-hero').classList.add('loaded'));
+
+  // materials rotator (build + duplicate for seamless loop)
+  const metals = [
+    ['Aluminum','M16 4l12 6-12 6L4 10z|M4 16l12 6 12-6'],
+    ['Carbon Steel','rect:14,14,36,36'],
+    ['Stainless','M32 8l18 10v28L32 56 14 46V18z'],
+    ['Brass','circle:32,32,20|circle:32,32,9'],
+    ['Copper','M14 50V20l18-8 18 8v30'],
+    ['Bronze','M32 12l20 12-20 12-20-12z|M12 36l20 12 20-12'],
+    ['Cast Iron','rect:16,16,32,32|M16 32h32M32 16v32'],
+    ['Your Alloy','M20 44V20h24M44 20L20 44']
+  ];
+  function iconSvg(d){
+    let inner = '';
+    d.split('|').forEach(seg => {
+      if(seg.startsWith('rect:')){const[x,y,w,h]=seg.slice(5).split(',');inner+=`<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`;}
+      else if(seg.startsWith('circle:')){const[cx,cy,r]=seg.slice(7).split(',');inner+=`<circle cx="${cx}" cy="${cy}" r="${r}"/>`;}
+      else{inner+=`<path d="${seg}"/>`;}
+    });
+    return `<svg viewBox="0 0 64 64">${inner}</svg>`;
+  }
+  const track = document.getElementById('rotatorTrack');
+  if(track){
+    const build = () => metals.map(([name,d]) =>
+      `<div class="rotator__item corners">${iconSvg(d)}<span>${name}</span></div>`).join('');
+    track.innerHTML = build() + build(); // duplicate => -50% loop
+  }
+
+  // zig read-more toggles
+  document.querySelectorAll('[data-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const more = btn.parentElement.querySelector('.zig-more');
+      const hidden = more.hasAttribute('hidden');
+      if(hidden){ more.removeAttribute('hidden'); btn.textContent='Read less'; }
+      else { more.setAttribute('hidden',''); btn.textContent='Read more'; }
+    });
+  });
+
+  // scroll reveals
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

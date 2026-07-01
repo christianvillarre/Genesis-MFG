@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genesis MFG — Precision Custom Manufacturing | Houston, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c1215;
+  --panel:#121b1f;
+  --panel-2:#17232a;
+  --line:#22323a;
+  --steel:#7d9099;
+  --mist:#b6c5cb;
+  --paper:#eef4f5;
+  --cyan:#1ed2e6;
+  --cyan-deep:#0a90b6;
+  --cyan-glow:rgba(30,210,230,.14);
+  --font-display:"Archivo",sans-serif;
+  --font-body:"Inter",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --maxw:1280px;
+  --pad:clamp(20px,5vw,72px);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:80px;}
+body{
+  margin:0;background:var(--ink);color:var(--paper);
+  font-family:var(--font-body);font-size:clamp(15px,1.05vw,17px);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+::selection{background:var(--cyan);color:var(--ink);}
+
+/* ---- shared technical type ---- */
+.mono{font-family:var(--font-mono);font-weight:500;letter-spacing:.04em;}
+.eyebrow{
+  font-family:var(--font-mono);font-size:.72rem;font-weight:500;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--cyan);
+  display:inline-flex;align-items:center;gap:.7em;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--cyan);display:inline-block;}
+
+h1,h2,h3{font-family:var(--font-display);font-weight:800;line-height:.98;letter-spacing:-.02em;margin:0;text-transform:uppercase;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);}
+.band{padding-block:clamp(72px,11vw,150px);position:relative;}
+
+/* ===================================================== */
+/* HEADER                                                 */
+/* ===================================================== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:transparent;border-bottom:1px solid transparent;
+  transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease;
+}
+.nav.solid{
+  background:rgba(12,18,21,.78);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:18px var(--pad);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.nav-left{display:flex;align-items:center;gap:30px;}
+.brand{display:flex;align-items:center;gap:11px;order:2;}
+.brand .glyph{
+  width:38px;height:38px;flex:none;position:relative;
+  border:1.5px solid var(--cyan);border-radius:50%;
+  display:grid;place-items:center;
+}
+.brand .glyph::before{content:"";position:absolute;inset:7px;border:1px solid var(--cyan);border-radius:50%;opacity:.4;}
+.brand .glyph span{font-family:var(--font-display);font-weight:900;font-size:18px;color:var(--cyan);}
+.brand .name{font-family:var(--font-display);font-weight:800;font-size:1.05rem;letter-spacing:.01em;line-height:1;text-transform:uppercase;text-align:right;}
+.brand .name small{display:block;font-family:var(--font-mono);font-weight:400;font-size:.56rem;letter-spacing:.28em;color:var(--steel);margin-top:3px;}
+.nav-links{display:flex;align-items:center;gap:30px;}
+.nav-links a{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.06em;color:var(--mist);transition:color .2s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-links a.m-only{display:none;}
+.nav-cta{
+  font-family:var(--font-mono);font-size:.78rem;letter-spacing:.04em;color:var(--ink);
+  background:var(--cyan);padding:10px 18px;border-radius:2px;font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s;
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px -8px var(--cyan);}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:3px;padding:9px 11px;cursor:pointer;order:1;}
+.burger span{display:block;width:18px;height:2px;background:var(--paper);margin:3px 0;}
+
+/* ===================================================== */
+/* HERO                                                   */
+/* ===================================================== */
+.hero{position:relative;overflow:hidden;min-height:100vh;min-height:100svh;
+  display:flex;align-items:center;padding-block:120px 90px;}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;opacity:.5;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 70% 30%,#000 0%,transparent 75%);
+          mask-image:radial-gradient(ellipse 80% 70% at 70% 30%,#000 0%,transparent 75%);
+}
+.hero-glow{position:absolute;z-index:0;width:640px;height:640px;right:-160px;top:-180px;
+  background:radial-gradient(circle,var(--cyan-glow),transparent 65%);filter:blur(10px);}
+.hero-in{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);}
+.hero h1{
+  font-size:clamp(2.9rem,9.4vw,8.2rem);font-weight:900;letter-spacing:-.03em;margin:.32em 0 .28em;
+}
+.hero h1 .ln{display:block;overflow:hidden;}
+.hero h1 .ln i{display:block;font-style:normal;transform:translateY(105%);}
+.hero h1 .accent{color:var(--cyan);}
+.hero-lede{max-width:46ch;color:var(--mist);font-size:clamp(1rem,1.5vw,1.18rem);margin:0 0 2.2em;}
+.hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+.btn{
+  font-family:var(--font-mono);font-weight:700;font-size:.82rem;letter-spacing:.03em;
+  padding:15px 26px;border-radius:2px;display:inline-flex;align-items:center;gap:10px;
+  transition:transform .2s,box-shadow .2s,background .2s,color .2s;cursor:pointer;
+}
+.btn-primary{background:var(--cyan);color:var(--ink);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -10px var(--cyan);}
+.btn-ghost{border:1px solid var(--line);color:var(--paper);background:transparent;}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);}
+.btn .num{font-weight:400;color:inherit;opacity:.65;}
+
+/* dimension callout under hero phone */
+.hero-dim{margin-top:54px;display:flex;align-items:flex-end;gap:14px;color:var(--steel);}
+.hero-dim .dimline{flex:1;height:14px;position:relative;max-width:340px;}
+.hero-dim .dimline::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line);}
+.hero-dim .dimline::after{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--cyan);}
+.hero-dim .dimline i{position:absolute;right:0;top:0;bottom:0;width:1px;background:var(--cyan);}
+.hero-dim .lbl{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;white-space:nowrap;}
+
+/* scroll cue */
+.scroll-cue{
+  position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.22em;color:var(--steel);
+  text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.scroll-cue .track{width:1px;height:42px;background:linear-gradient(var(--cyan),transparent);position:relative;overflow:hidden;}
+.scroll-cue .track::after{content:"";position:absolute;top:-12px;left:0;width:1px;height:12px;background:var(--cyan);animation:cue 1.8s ease-in-out infinite;}
+@keyframes cue{0%{top:-12px}60%,100%{top:42px}}
+
+/* ---- spec strip ---- */
+.specs{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel);}
+.specs-in{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.spec{padding:30px var(--pad);border-right:1px solid var(--line);}
+.spec:last-child{border-right:0;}
+.spec b{font-family:var(--font-display);font-weight:800;font-size:clamp(1.6rem,3vw,2.4rem);display:block;line-height:1;}
+.spec span{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--steel);margin-top:10px;display:block;}
+.spec b .u{color:var(--cyan);}
+
+/* ===================================================== */
+/* SECTION HEAD                                           */
+/* ===================================================== */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:clamp(34px,5vw,60px);}
+.sec-head h2{font-size:clamp(2rem,4.6vw,3.5rem);max-width:14ch;}
+.sec-head .ref{font-family:var(--font-mono);font-size:.72rem;color:var(--steel);letter-spacing:.14em;}
+
+/* ---- capabilities (BOM index) ---- */
+.cap-list{border-top:1px solid var(--line);}
+.cap{
+  display:grid;grid-template-columns:90px 1fr auto;gap:30px;align-items:center;
+  padding:30px 6px;border-bottom:1px solid var(--line);
+  transition:background .3s,padding .3s;position:relative;
+}
+.cap .item{font-family:var(--font-mono);font-size:.78rem;color:var(--cyan);letter-spacing:.08em;}
+.cap .ctitle{font-family:var(--font-display);font-weight:700;font-size:clamp(1.3rem,2.6vw,2rem);text-transform:uppercase;letter-spacing:-.01em;}
+.cap .cdesc{font-family:var(--font-mono);font-size:.74rem;color:var(--steel);letter-spacing:.05em;text-align:right;max-width:30ch;}
+.cap::after{content:"→";position:absolute;right:6px;color:var(--cyan);opacity:0;transform:translateX(-8px);transition:.3s;font-family:var(--font-mono);}
+.cap:hover{background:linear-gradient(90deg,var(--cyan-glow),transparent 60%);padding-left:24px;}
+.cap:hover .cdesc{opacity:0;}
+.cap:hover::after{opacity:1;transform:translateX(0);}
+
+/* ---- materials ---- */
+.materials{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.mat-grid{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
+.tag{
+  font-family:var(--font-mono);font-size:.82rem;letter-spacing:.04em;color:var(--mist);
+  border:1px solid var(--line);border-radius:2px;padding:11px 18px;display:inline-flex;gap:10px;align-items:center;
+  transition:border-color .25s,color .25s;
+}
+.tag::before{content:"";width:6px;height:6px;background:var(--cyan);border-radius:50%;}
+.tag:hover{border-color:var(--cyan);color:var(--paper);}
+
+/* ---- principles ---- */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:clamp(30px,5vw,52px);}
+.principle{background:var(--ink);padding:clamp(28px,3.5vw,46px);}
+.principle .pn{font-family:var(--font-mono);font-size:.74rem;color:var(--cyan);letter-spacing:.16em;}
+.principle h3{font-size:clamp(1.5rem,2.6vw,2.1rem);margin:18px 0 14px;}
+.principle p{margin:0;color:var(--mist);font-size:.96rem;}
+
+/* ===================================================== */
+/* CTA BAND                                               */
+/* ===================================================== */
+.cta-band{position:relative;overflow:hidden;text-align:center;
+  background:linear-gradient(135deg,var(--panel-2),var(--ink));border-block:1px solid var(--line);}
+.cta-band .hero-grid{opacity:.35;-webkit-mask-image:radial-gradient(ellipse 70% 90% at 50% 50%,#000,transparent 70%);mask-image:radial-gradient(ellipse 70% 90% at 50% 50%,#000,transparent 70%);}
+.cta-band .inner{position:relative;z-index:2;}
+.cta-band h2{font-size:clamp(2rem,5vw,4rem);max-width:18ch;margin:0 auto .5em;}
+.cta-band .phone{font-family:var(--font-display);font-weight:900;font-size:clamp(2.2rem,6vw,4.6rem);color:var(--cyan);letter-spacing:-.02em;line-height:1;}
+.cta-band .phone a{transition:opacity .2s;}
+.cta-band .phone a:hover{opacity:.8;}
+
+/* ===================================================== */
+/* CONTACT                                                */
+/* ===================================================== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);}
+.cinfo h2{font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:30px;}
+.cinfo dl{display:grid;grid-template-columns:auto 1fr;gap:18px 26px;margin:0 0 34px;}
+.cinfo dt{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);padding-top:4px;}
+.cinfo dd{margin:0;color:var(--paper);}
+.cinfo dd a{color:var(--paper);border-bottom:1px solid transparent;transition:border-color .2s;}
+.cinfo dd a:hover{border-color:var(--cyan);}
+.cred{display:inline-flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:3px;padding:16px 20px;margin-top:4px;}
+.cred svg{width:40px;height:40px;flex:none;}
+.cred b{font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:.95rem;letter-spacing:.02em;display:block;line-height:1.1;}
+.cred span{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.12em;color:var(--steel);text-transform:uppercase;}
+
+form .fld{margin-bottom:18px;}
+form label{display:block;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:8px;}
+form label .r{color:var(--cyan);}
+form input,form textarea{
+  width:100%;padding:13px 14px;background:var(--panel);border:1px solid var(--line);border-radius:2px;
+  color:var(--paper);font-family:var(--font-body);font-size:.98rem;transition:border-color .2s,background .2s;
+}
+form input:focus,form textarea:focus{outline:none;border-color:var(--cyan);background:var(--panel-2);}
+form textarea{min-height:120px;resize:vertical;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+form .btn-primary{width:100%;justify-content:center;border:0;margin-top:6px;}
+
+/* ===================================================== */
+/* FOOTER                                                 */
+/* ===================================================== */
+footer{border-top:1px solid var(--line);background:var(--panel);}
+.foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-block:clamp(46px,6vw,72px);}
+.foot-brand .name{font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;}
+.foot-brand p{color:var(--steel);font-family:var(--font-mono);font-size:.74rem;letter-spacing:.06em;margin:12px 0 0;max-width:34ch;}
+.foot-nav{display:flex;gap:60px;flex-wrap:wrap;}
+.foot-col h4{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin:0 0 16px;font-weight:500;}
+.foot-col a{display:block;color:var(--mist);font-size:.9rem;padding:5px 0;transition:color .2s;}
+.foot-col a:hover{color:var(--paper);}
+.foot-bottom{border-top:1px solid var(--line);padding:22px var(--pad);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.06em;color:var(--steel);}
+
+/* ===================================================== */
+/* REVEAL + MOTION                                        */
+/* ===================================================== */
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+[data-reveal].in{opacity:1;transform:none;}
+@keyframes riseUp{to{transform:translateY(0);}}
+.hero.loaded h1 .ln i{animation:riseUp .9s cubic-bezier(.16,1,.3,1) forwards;}
+.hero.loaded h1 .ln:nth-child(2) i{animation-delay:.09s;}
+.hero.loaded h1 .ln:nth-child(3) i{animation-delay:.18s;}
+
+/* ===================================================== */
+/* RESPONSIVE                                             */
+/* ===================================================== */
+@media(max-width:900px){
+  .nav-links,.nav-cta{display:none;}
+  .burger{display:block;order:1;}
+  .nav-left{order:2;}
+  .brand{order:3;}
+  .nav.open{background:rgba(12,18,21,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+  .nav.open .nav-links{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--ink);border-bottom:1px solid var(--line);padding:8px var(--pad) 18px;}
+  .nav.open .nav-links a{padding:14px 0;border-bottom:1px solid var(--line);font-size:.95rem;}
+  .nav.open .nav-links a.m-only{display:block;color:var(--cyan);}
+  .specs-in{grid-template-columns:1fr 1fr;}
+  .spec:nth-child(2){border-right:0;}
+  .spec:nth-child(1),.spec:nth-child(2){border-bottom:1px solid var(--line);}
+  .principles{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+}
+@media(max-width:620px){
+  .specs-in{grid-template-columns:1fr;}
+  .spec{border-right:0;border-bottom:1px solid var(--line);}
+  .cap{grid-template-columns:60px 1fr;gap:16px;}
+  .cap .cdesc{grid-column:1/-1;text-align:left;margin-top:6px;}
+  .cap:hover .cdesc{opacity:1;}
+  .two{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto;}
+  .hero h1 .ln i{transform:none;}
+  [data-reveal]{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <div class="nav-left">
+      <nav class="nav-links">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#materials">Materials</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="m-only" href="tel:8006746149">↳ (800) 674-6149</a>
+      </nav>
+      <a class="nav-cta" href="tel:8006746149">↳ (800) 674-6149</a>
+    </div>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="brand" href="#top">
+      <span class="name">Genesis MFG<small>Houston · TX</small></span>
+      <span class="glyph"><span>G</span></span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-in">
+    <span class="eyebrow">Est. 2010 — Custom Manufacturing</span>
+    <h1>
+      <span class="ln"><i>Precision</i></span>
+      <span class="ln"><i>parts, machined</i></span>
+      <span class="ln"><i>to <span class="accent">spec.</span></i></span>
+    </h1>
+    <p class="hero-lede">CNC and manual machining for ferrous and non-ferrous metals — built to your exact drawing, and built to last. A veteran and minority-owned shop serving Houston and beyond since 2010.</p>
+    <div class="hero-cta-row">
+      <a class="btn btn-primary" href="#contact">Request a quote <span class="num">→</span></a>
+      <a class="btn btn-ghost" href="#capabilities">View capabilities</a>
+    </div>
+    <div class="hero-dim" data-reveal>
+      <div class="dimline"><i></i></div>
+      <span class="lbl">SERVING HOUSTON · DALLAS · PERMIAN BASIN · E. TEXAS</span>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#capabilities" aria-label="Scroll to capabilities">
+    <span>Scroll</span>
+    <span class="track"></span>
+  </a>
+</section>
+
+<!-- ============ SPEC STRIP ============ -->
+<div class="specs">
+  <div class="specs-in">
+    <div class="spec"><b>2010</b><span>Operating since</span></div>
+    <div class="spec"><b><span class="u">$8</span>M</b><span>Liability insured</span></div>
+    <div class="spec"><b>CNC<span class="u">+</span></b><span>CNC &amp; manual machining</span></div>
+    <div class="spec"><b>360°</b><span>Ferrous &amp; non-ferrous</span></div>
+  </div>
+</div>
+
+<!-- ============ CAPABILITIES ============ -->
+<section class="band" id="capabilities">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <h2>What we<br>make for you</h2>
+      <span class="ref">[ CAPABILITIES INDEX ]</span>
+    </div>
+    <div class="cap-list">
+      <div class="cap" data-reveal>
+        <span class="item">ITEM 001</span>
+        <span class="ctitle">CNC Machining</span>
+        <span class="cdesc">Repeatable precision parts from your CAD or print</span>
+      </div>
+      <div class="cap" data-reveal>
+        <span class="item">ITEM 002</span>
+        <span class="ctitle">Manual Machining</span>
+        <span class="cdesc">One-offs, prototypes, and short-run components</span>
+      </div>
+      <div class="cap" data-reveal>
+        <span class="item">ITEM 003</span>
+        <span class="ctitle">Gaskets &amp; Metal Shims</span>
+        <span class="cdesc">Custom-cut gaskets and shim stock to spec</span>
+      </div>
+      <div class="cap" data-reveal>
+        <span class="item">ITEM 004</span>
+        <span class="ctitle">Welding &amp; Fabrication</span>
+        <span class="cdesc">Assembly and finishing for equipment manufacturers</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MATERIALS ============ -->
+<section class="band materials" id="materials">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <h2>Metals we cut</h2>
+      <span class="ref">[ FERROUS · NON-FERROUS ]</span>
+    </div>
+    <div class="mat-grid" data-reveal>
+      <span class="tag">Aluminum</span>
+      <span class="tag">Carbon Steel</span>
+      <span class="tag">Stainless Steel</span>
+      <span class="tag">Brass</span>
+      <span class="tag">Copper</span>
+      <span class="tag">Bronze</span>
+      <span class="tag">Cast Iron</span>
+      <span class="tag">+ tell us your alloy</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT / PRINCIPLES ============ -->
+<section class="band" id="about">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <h2>Built on three<br>principles</h2>
+      <span class="ref">[ SINCE 2010 ]</span>
+    </div>
+    <p data-reveal style="max-width:62ch;color:var(--mist);font-size:1.08rem;">Genesis MFG has provided manufacturing solutions since 2010. Our advanced machining and welding capabilities let us deliver equipment manufacturers products of the highest quality — backed by up to $8 million in liability insurance and the experience to produce a wide variety of parts.</p>
+    <div class="principles">
+      <div class="principle" data-reveal>
+        <span class="pn">01 / INTEGRITY</span>
+        <h3>Integrity first</h3>
+        <p>We quote it straight and we machine it right. No surprises between the print and the part.</p>
+      </div>
+      <div class="principle" data-reveal>
+        <span class="pn">02 / EXCELLENCE</span>
+        <h3>Excellence in all</h3>
+        <p>Every component leaves the shop held to the same standard, whether it's a one-off or a full run.</p>
+      </div>
+      <div class="principle" data-reveal>
+        <span class="pn">03 / TENACITY</span>
+        <h3>Tenacity</h3>
+        <p>When you choose us, we're dedicated to doing the job right — and seeing your project through.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="band cta-band">
+  <div class="hero-grid"></div>
+  <div class="wrap inner">
+    <span class="eyebrow" data-reveal style="justify-content:center;">Ready when you are</span>
+    <h2 data-reveal style="margin-top:22px;">Get your custom parts manufactured to last</h2>
+    <div class="phone" data-reveal><a href="tel:8006746149">(800) 674-6149</a></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="band" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="cinfo" data-reveal>
+        <span class="eyebrow">Start a project</span>
+        <h2 style="margin-top:20px;">Let's talk specs</h2>
+        <dl>
+          <dt>Phone</dt><dd><a href="tel:8006746149">(800) 674-6149</a></dd>
+          <dt>Email</dt><dd><a href="mailto:sales@genesis-mfg.com">sales@genesis-mfg.com</a></dd>
+          <dt>Shop</dt><dd>13211 Windfern Rd, Suite L<br>Houston, TX 77064</dd>
+          <dt>Area</dt><dd>Houston · Dallas · Permian Basin · East Texas</dd>
+        </dl>
+        <div class="cred">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="22" fill="none" stroke="var(--cyan)" stroke-width="1.5"/>
+            <path d="M24 9l3.9 7.9 8.7 1.3-6.3 6.1 1.5 8.6L24 36l-7.8 4 1.5-8.6-6.3-6.1 8.7-1.3z" fill="var(--cyan)"/>
+          </svg>
+          <div>
+            <b>Veteran Owned</b>
+            <span>Minority-owned business</span>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal>
+        <form onsubmit="event.preventDefault();this.reset();this.querySelector('.formnote').textContent='✓ Thanks — we\'ll be in touch shortly.';">
+          <div class="two">
+            <div class="fld"><label>First name <span class="r">*</span></label><input type="text" required></div>
+            <div class="fld"><label>Last name <span class="r">*</span></label><input type="text" required></div>
+          </div>
+          <div class="fld"><label>Email <span class="r">*</span></label><input type="email" required></div>
+          <div class="fld"><label>Phone <span class="r">*</span></label><input type="tel" required></div>
+          <div class="fld"><label>What do you need machined? <span class="r">*</span></label><textarea required placeholder="Part, material, quantity, tolerances, target date…"></textarea></div>
+          <button type="submit" class="btn btn-primary">Send request →</button>
+          <p class="formnote mono" style="font-size:.74rem;color:var(--cyan);margin:14px 0 0;min-height:1em;"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="name">Genesis MFG</div>
+        <p>Precision custom manufacturing — CNC &amp; manual machining for ferrous and non-ferrous metals. Houston, TX.</p>
+      </div>
+      <div class="foot-nav">
+        <div class="foot-col">
+          <h4>Site</h4>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#materials">Materials</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h4>Reach us</h4>
+          <a href="tel:8006746149">(800) 674-6149</a>
+          <a href="mailto:sales@genesis-mfg.com">sales@genesis-mfg.com</a>
+          <a href="#contact">13211 Windfern Rd, Ste L</a>
+          <a href="#contact">Houston, TX 77064</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© <span id="yr"></span> GENESIS MFG · ALL RIGHTS RESERVED</span>
+    <span>VETERAN &amp; MINORITY-OWNED · EST. 2010</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // transparent nav over the full-screen hero -> solid once scrolled
+  const navEl = document.getElementById('nav');
+  const onScroll = () => navEl.classList.toggle('solid', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  // hero load-in
+  window.addEventListener('load', () => {
+    document.querySelector('.hero').classList.add('loaded');
+  });
+
+  // scroll reveals
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+  // close mobile menu on link tap
+  document.querySelectorAll('.nav-links a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('nav').classList.remove('open')));
+</script>
+</body>
+</html>
