@@ -508,7 +508,7 @@ a.service-card span.service-card__desc{
 .zig-media__frame{
     position:relative;
     width:100%;
-    height:260px;
+    height:460px;
     aspect-ratio:5.3/3;
     overflow:hidden;
     background:#07203c;
@@ -519,8 +519,25 @@ a.service-card span.service-card__desc{
     width:100%;
     height:100%;
     object-fit:cover;
-    object-position: center; /* Align video to the top */
+    object-position:center;
     display:block;
+}
+
+.zig-media__frame::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,.98) 10%,
+        rgba(0,0,0,.9) 25%,
+        rgba(0,0,0,.7) 45%,
+        rgba(0,0,0,.4) 65%,
+        rgba(0,0,0,.15) 80%,
+        transparent 100%
+    );
 }
 
 </style>
@@ -825,7 +842,7 @@ a.service-card span.service-card__desc{
 
     <a class="triple-card" href="#contact" data-reveal>
       <div class="triple-media">
-        <img src="/images/OIL-GAS.jpeg" alt="" aria-hidden="true">
+        <img src="/images/stock44.jpeg" alt="" aria-hidden="true">
       </div>
       <div class="triple-veil"></div>
       <div class="triple-content">
