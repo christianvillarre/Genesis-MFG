@@ -778,6 +778,10 @@ a.service-card span.service-card__desc{
 .menu-bg.open{
   background:rgba(31,139,255,1);
 }
+.netlify-captcha{
+  margin:20px 0;
+  min-height:78px;
+}
 </style>
 <!-- ============ HERO ============ -->
 <section class="section-hero" id="top">
@@ -1336,73 +1340,96 @@ a.service-card span.service-card__desc{
       </div>
 
       <div data-reveal>
-        <form
+     <form
   name="machining-request"
   method="POST"
   data-netlify="true"
+  data-netlify-recaptcha="true"
   netlify-honeypot="bot-field"
 >
-
   <input type="hidden" name="form-name" value="machining-request">
 
   <p hidden>
     <label>
-      Don't fill this out:
+      Don’t fill this out:
       <input name="bot-field">
     </label>
   </p>
 
   <div class="two">
     <div class="fld">
-      <label>First name <span class="r">*</span></label>
+      <label for="first-name">
+        First name <span class="r">*</span>
+      </label>
       <input
+        id="first-name"
         type="text"
         name="first-name"
+        autocomplete="given-name"
         required
       >
     </div>
 
     <div class="fld">
-      <label>Last name <span class="r">*</span></label>
+      <label for="last-name">
+        Last name <span class="r">*</span>
+      </label>
       <input
+        id="last-name"
         type="text"
         name="last-name"
+        autocomplete="family-name"
         required
       >
     </div>
   </div>
 
   <div class="fld">
-    <label>Email <span class="r">*</span></label>
+    <label for="email">
+      Email <span class="r">*</span>
+    </label>
     <input
+      id="email"
       type="email"
       name="email"
+      autocomplete="email"
       required
     >
   </div>
 
   <div class="fld">
-    <label>Phone <span class="r">*</span></label>
+    <label for="phone">
+      Phone <span class="r">*</span>
+    </label>
     <input
+      id="phone"
       type="tel"
       name="phone"
+      autocomplete="tel"
       required
     >
   </div>
 
   <div class="fld">
-    <label>What do you need machined? <span class="r">*</span></label>
+    <label for="project-details">
+      What do you need machined? <span class="r">*</span>
+    </label>
     <textarea
+      id="project-details"
       name="project-details"
       required
       placeholder="Part, material, quantity, tolerances, target date…"
     ></textarea>
   </div>
 
+  <div
+    class="netlify-captcha"
+    data-netlify-recaptcha="true"
+  ></div>
+
   <button type="submit" class="form-btn">
     Send request →
   </button>
-
 </form>
       </div>
     </div>
