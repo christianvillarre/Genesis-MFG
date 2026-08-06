@@ -574,10 +574,7 @@ a.service-card span.service-card__desc{
         aria-label="Menu"
         aria-expanded="false">
 
-        <span class="menu-toggle__label">
-            <span class="menu-toggle__label-text">Menu</span>
-            <img class="menu-toggle__logo" src="/images/GENESIS-MFG-LOGO.png" alt="Genesis MFG">
-        </span>
+        <span class="menu-toggle__label">Menu</span>
 
         <span class="menu-toggle__box">
             <span class="menu-toggle__bar"></span>
@@ -593,7 +590,6 @@ a.service-card span.service-card__desc{
         <a href="#equipment">Equipment</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <a class="nav-dropdown-phone" href="tel:8326889918">(832) 688-9918</a>
     </nav>
 
 </div>
@@ -728,7 +724,6 @@ a.service-card span.service-card__desc{
 .nav-dropdown.open a:nth-child(4){transition-delay:.22s;}
 .nav-dropdown.open a:nth-child(5){transition-delay:.26s;}
 .nav-dropdown.open a:nth-child(6){transition-delay:.30s;}
-.nav-dropdown.open a:nth-child(7){transition-delay:.34s;}
 
 .site-nav{
   position:fixed;
@@ -786,57 +781,6 @@ a.service-card span.service-card__desc{
 .netlify-captcha{
   margin:20px 0;
   min-height:78px;
-}
-
-/* Phone integrated into the dropdown for mobile. Hidden
-   here by default; the mobile media query below swaps it
-   in for the top-bar version. Menu position, sizing and
-   animation are untouched. */
-.nav-dropdown-phone{
-  display:none;
-}
-
-.menu-toggle__logo{
-  display:none;
-  max-height:22px;
-  width:auto;
-}
-
-@media(max-width:768px){
-  .brand,
-  .nav-phone{
-    display:none;
-  }
-  .nav-in{
-    grid-template-columns:1fr;
-    justify-items:center;
-  }
-  .menu-wrap{
-    width:100%;
-  }
-  .menu-toggle{
-    padding:0 22px;
-  }
-  .menu-toggle__label-text{
-    display:none;
-  }
-  .menu-toggle__logo{
-    display:block;
-  }
-  .menu-bg.open{
-    height:460px;
-  }
-  .nav-dropdown-phone{
-    display:block;
-    margin-top:6px;
-    padding-top:18px;
-    border-top:1px solid rgba(255,255,255,.25);
-    font-weight:700;
-    font-size:1.05rem;
-    letter-spacing:.03em;
-    text-transform:none;
-    color:#fff;
-  }
 }
 </style>
 <!-- ============ HERO ============ -->

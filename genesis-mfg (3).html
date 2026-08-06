@@ -587,6 +587,9 @@ a.service-card span.service-card__desc{
     </button>
 
     <nav class="nav-dropdown" id="navDropdown">
+        <a class="nav-dropdown-brand" href="#top">
+          <img src="/images/GENESIS-MFG-LOGO.png" alt="Genesis MFG">
+        </a>
         <a href="#capabilities">Capabilities</a>
         <a href="#materials">Materials</a>
         <a href="#work">Industries</a>
@@ -722,13 +725,14 @@ a.service-card span.service-card__desc{
     opacity:1;
 }
 
-.nav-dropdown.open a:nth-child(1){transition-delay:.10s;}
-.nav-dropdown.open a:nth-child(2){transition-delay:.14s;}
-.nav-dropdown.open a:nth-child(3){transition-delay:.18s;}
-.nav-dropdown.open a:nth-child(4){transition-delay:.22s;}
-.nav-dropdown.open a:nth-child(5){transition-delay:.26s;}
-.nav-dropdown.open a:nth-child(6){transition-delay:.30s;}
-.nav-dropdown.open a:nth-child(7){transition-delay:.34s;}
+.nav-dropdown.open a:nth-child(1){transition-delay:.06s;}
+.nav-dropdown.open a:nth-child(2){transition-delay:.10s;}
+.nav-dropdown.open a:nth-child(3){transition-delay:.14s;}
+.nav-dropdown.open a:nth-child(4){transition-delay:.18s;}
+.nav-dropdown.open a:nth-child(5){transition-delay:.22s;}
+.nav-dropdown.open a:nth-child(6){transition-delay:.26s;}
+.nav-dropdown.open a:nth-child(7){transition-delay:.30s;}
+.nav-dropdown.open a:nth-child(8){transition-delay:.34s;}
 
 .site-nav{
   position:fixed;
@@ -788,10 +792,11 @@ a.service-card span.service-card__desc{
   min-height:78px;
 }
 
-/* Phone integrated into the dropdown for mobile. Hidden
-   here by default; the mobile media query below swaps it
-   in for the top-bar version. Menu position, sizing and
-   animation are untouched. */
+/* Logo + phone integrated into the dropdown for mobile.
+   Hidden here by default; the mobile media query below
+   swaps them in for the top-bar versions. Menu position,
+   sizing and animation are untouched. */
+.nav-dropdown-brand,
 .nav-dropdown-phone{
   display:none;
 }
@@ -823,8 +828,13 @@ a.service-card span.service-card__desc{
   .menu-toggle__logo{
     display:block;
   }
-  .menu-bg.open{
-    height:460px;
+  .nav-dropdown-brand{
+    display:flex;
+    align-items:center;
+    padding:18px 24px 10px;
+  }
+  .nav-dropdown-brand img{
+    max-width:130px;
   }
   .nav-dropdown-phone{
     display:block;

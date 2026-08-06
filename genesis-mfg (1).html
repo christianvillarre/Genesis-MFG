@@ -574,10 +574,7 @@ a.service-card span.service-card__desc{
         aria-label="Menu"
         aria-expanded="false">
 
-        <span class="menu-toggle__label">
-            <span class="menu-toggle__label-text">Menu</span>
-            <img class="menu-toggle__logo" src="/images/GENESIS-MFG-LOGO.png" alt="Genesis MFG">
-        </span>
+        <span class="menu-toggle__label">Menu</span>
 
         <span class="menu-toggle__box">
             <span class="menu-toggle__bar"></span>
@@ -788,47 +785,62 @@ a.service-card span.service-card__desc{
   min-height:78px;
 }
 
-/* Phone integrated into the dropdown for mobile. Hidden
-   here by default; the mobile media query below swaps it
-   in for the top-bar version. Menu position, sizing and
-   animation are untouched. */
+/* =========================================
+   MOBILE NAV — logo left, transparent icon-only
+   hamburger right, phone number removed from
+   the bar and moved to the bottom of the menu
+========================================= */
 .nav-dropdown-phone{
   display:none;
 }
 
-.menu-toggle__logo{
-  display:none;
-  max-height:22px;
-  width:auto;
-}
-
 @media(max-width:768px){
-  .brand,
+  .nav-in{
+    grid-template-columns:auto 1fr auto;
+  }
+  .brand{
+    justify-self:start;
+  }
+  .brand img{
+    max-width:110px;
+  }
   .nav-phone{
     display:none;
   }
-  .nav-in{
-    grid-template-columns:1fr;
-    justify-items:center;
-  }
   .menu-wrap{
-    width:100%;
+    grid-column:3;
+    justify-self:end;
+    width:52px;
+    height:48px;
   }
   .menu-toggle{
-    padding:0 22px;
+    width:52px;
+    padding:0;
+    justify-content:center;
   }
-  .menu-toggle__label-text{
+  .menu-toggle__label{
     display:none;
   }
-  .menu-toggle__logo{
-    display:block;
+  .menu-bg{
+    background:rgba(31,139,255,0) !important;
+  }
+  .site-nav.solid .menu-bg{
+    background:rgba(31,139,255,0) !important;
   }
   .menu-bg.open{
-    height:460px;
+    background:rgba(31,139,255,1) !important;
+    width:min(280px,88vw);
+    left:auto;
+    right:0;
+  }
+  .nav-dropdown{
+    width:min(280px,88vw);
+    left:auto;
+    right:0;
   }
   .nav-dropdown-phone{
     display:block;
-    margin-top:6px;
+    margin-top:8px;
     padding-top:18px;
     border-top:1px solid rgba(255,255,255,.25);
     font-weight:700;
@@ -1407,7 +1419,7 @@ a.service-card span.service-card__desc{
 
   <p hidden>
     <label>
-      Don’t fill this out:
+      Don't fill this out:
       <input name="bot-field">
     </label>
   </p>
