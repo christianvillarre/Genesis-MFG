@@ -537,31 +537,6 @@ a.service-card span.service-card__desc{
     );
 }
 
-/* Video rows — mobile optimization.
-   The 460px fixed height above is meant for the wide desktop
-   frame; on narrow screens it forces a tall, heavily-cropped
-   video box. Switch back to a proportional aspect ratio and
-   tighten spacing so each clip reads correctly stacked. */
-@media(max-width:768px){
-  .zig{padding:clamp(2.75rem,10vw,4rem) 0;}
-  .zig__inner{gap:2.75rem;}
-  .zig-row{gap:1.25rem;}
-  .zig-media__frame{
-    height:auto;
-    aspect-ratio:4/3;
-  }
-  .zig-media__tag{
-    left:10px;
-    bottom:10px;
-    font-size:.58rem;
-    padding:4px 8px;
-  }
-  .zig-tags span{
-    font-size:.64rem;
-    padding:6px 9px;
-  }
-}
-
 </style>
 
 <!-- Matomo -->
